@@ -7,19 +7,12 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding-top: 70px;
+  background-color: #121212;
+  color: #eee;
   transition: background 0.5s, color 0.5s;
 }
 
-/* DARK AND LIGHT THEMES */
-.light-mode {
-  --bg-color: #f5f7fa;
-  --text-color: #222;
-  --section-bg: #fff;
-  --section-alt-bg: #f0f0f0;
-  --card-bg: #fff;
-  --card-shadow: rgba(0,0,0,0.1);
-}
-
+/* DARK MODE VARIABLES */
 .dark-mode {
   --bg-color: #121212;
   --text-color: #eee;
@@ -29,7 +22,7 @@ body {
   --card-shadow: rgba(0,0,0,0.6);
 }
 
-.light-mode, .dark-mode {
+.dark-mode {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
@@ -50,15 +43,24 @@ body {
 /* HERO SECTION */
 .hero-section {
   min-height: 70vh;
-  background: linear-gradient(120deg, #00b09b, #96c93d);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: white;
   margin-top: -20px;
+  position: relative;
+  overflow: hidden;
 }
 
+.hero-dark {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background-image: radial-gradient(circle at 25% 25%, rgba(0, 176, 155, 0.4) 0%, transparent 60%),
+                    radial-gradient(circle at 75% 75%, rgba(150, 201, 61, 0.4) 0%, transparent 60%);
+  background-blend-mode: overlay;
+}
+
+/* PROFILE IMAGE */
 .profile-img {
   width: 180px;
   height: 180px;
@@ -66,7 +68,7 @@ body {
   border: 5px solid rgba(255, 255, 255, 0.748);
   object-fit: cover;
   margin-bottom: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s;
 }
 
@@ -87,7 +89,7 @@ body {
 .social-icons a {
   margin: 0 10px;
   font-size: 1.6rem;
-  color: white; 
+  color: white;
   transition: transform 0.3s, color 0.3s;
 }
 
@@ -96,7 +98,7 @@ body {
   color: #000000;
 }
 
-/* SECTIONS */
+/* SECTION TITLES */
 .section h2 {
   text-align: center;
   font-weight: 700;
@@ -149,32 +151,62 @@ body {
   box-shadow: 0 12px 25px var(--card-shadow);
 }
 
+/* PROJECTS CARD IMAGE */
+.project-card img {
+  height: 280px;
+  max-width: 90%;
+  margin: 0 auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* PROJECT CARD TEXT FOR DARK MODE */
+.project-card {
+  color: white;
+}
+
+.project-card .card-title,
+.project-card .card-text,
+.project-card p,
+.project-card button {
+  color: white;
+}
+
+.project-card button {
+  border-color: #00b09b;
+}
+
+.project-card button:hover {
+  background-color: #00b09b;
+  color: white;
+}
+
+/* TECHNOLOGY BADGES */
+.project-techs .tech-badge {
+  background-color: rgba(0, 176, 155, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.project-techs .tech-badge:hover {
+  background-color: rgba(0, 176, 155, 0.2);
+  transform: scale(1.05);
+}
+
 /* CONTACT */
 #contact button {
   border-radius: 50px;
   padding: 10px 30px;
   transition: all 0.3s ease;
-}
-
-/* PROJECTS CARD TEXT COLOR FOR DARK MODE */
-.dark-mode .project-card {
-  background: var(--card-bg);
-  color: white; 
-}
-
-.dark-mode .project-card .card-title,
-.dark-mode .project-card .card-text,
-.dark-mode .project-card button {
-  color: white;
-}
-
-.dark-mode .project-card button {
-  border-color: #00b09b;
-}
-
-.dark-mode .project-card button:hover {
-  background-color: #00b09b;
-  color: white;
 }
 
 /* FOOTER */
@@ -184,4 +216,30 @@ body {
   background-color: var(--section-alt-bg);
   color: var(--text-color);
   transition: background 0.5s, color 0.5s;
+}
+
+/* EDUCATION */
+.education-card {
+  transition: transform 0.3s, box-shadow 0.3s, background 0.5s;
+}
+
+.education-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px var(--card-shadow);
+}
+
+.navbar .nav {
+  justify-content: center;
+  gap: 30px; /* increased spacing between tabs */
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.navbar .nav-link:hover {
+  color: #00b09b;
+  transform: scale(1.1);
 }

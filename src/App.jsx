@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Navbar, Nav, Row, Col, Card, Button } from "react-bootstrap";
 import { motion } from "framer-motion";
 import {
@@ -11,13 +11,13 @@ import {
   FaNodeJs,
   FaPython,
   FaDatabase,
-  FaSun,
-  FaMoon,
   FaJava,
   FaDocker,
   FaChartBar,
   FaEnvelope,
   FaPhone,
+  FaGraduationCap,
+  FaSchool,
 } from "react-icons/fa";
 import {
   SiC,
@@ -34,11 +34,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import profileImg from "./assets/profile.jpg";
 
-const App = () => {
-  const [darkMode, setDarkMode] = useState(true);
-  const toggleDarkMode = () => setDarkMode(!darkMode);
+// Project images
+import project1Img from "./assets/project1.png";
+import project2Img from "./assets/project2.png";
+import project3Img from "./assets/project3.png";
+import anandaLogo from "./assets/ananda_logo.png";
+import universityLogo from "./assets/university_logo.png";
 
-  // 🔹 Automatically open email client when Contact section appears
+const App = () => {
   useEffect(() => {
     const handleScroll = () => {
       const contactSection = document.getElementById("contact");
@@ -54,7 +57,6 @@ const App = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Categorized skills
   const skills = {
     Languages: [
       { icon: <SiC size={50} color="#A8B9CC" />, name: "C" },
@@ -84,42 +86,84 @@ const App = () => {
   };
 
   const projects = [
-    { title: "Project 1", description: "Awesome project description.", link: "#" },
-    { title: "Project 2", description: "Awesome project description.", link: "#" },
-    { title: "Project 3", description: "Awesome project description.", link: "#" },
+    {
+      title: "Restaurant Table Reservation System",
+      description:
+        "A Java and SQLite app for booking restaurant tables by time slot or date range, featuring real-time availability and admin management.",
+      technologies: [
+        { name: "Java", icon: <FaJava /> },
+        { name: "SQLite", icon: <FaDatabase /> },
+      ],
+      link: "https://github.com/IssaWick/RestaurantTableReservationSystem.git",
+      image: project1Img,
+    },
+    {
+      title: "Fitness Centre Management System",
+      description: "A web app to manage memberships, payments, and workout schedules.",
+      technologies: [
+        { name: "HTML", icon: <FaHtml5 /> },
+        { name: "CSS", icon: <FaCss3Alt /> },
+        { name: "JavaScript", icon: <FaJs /> },
+        { name: "PHP", icon: <SiPhp /> },
+      ],
+      link: "https://github.com/ASDENUWAN/CS-project-frontend.git",
+      image: project2Img,
+    },
+    {
+      title: "SkillHive Web Application",
+      description:
+        "A microservice-based web application that connects users with daily service providers on a single platform.",
+      technologies: [
+        { name: "Node.js", icon: <FaNodeJs /> },
+        { name: "Express", icon: <SiExpress /> },
+        { name: "MySQL", icon: <SiMysql /> },
+        { name: "React", icon: <FaReact /> },
+        { name: "Docker", icon: <FaDocker /> },
+        { name: "Jenkins", icon: <SiJenkins /> },
+      ],
+      link: "https://github.com/IssaWick/SkillHiveWebApplication.git",
+      image: project3Img,
+    },
+  ];
+
+  const education = [
+    {
+      school: "Ananda College Colombo 10",
+      degree: "Science Stream",
+      year: "2013 - 2021",
+      icon: <FaSchool size={30} color="#00b09b" />,
+      logo: anandaLogo,
+    },
+    {
+      school: "University of Sri Jayewardenepura",
+      degree: "BSc.(Hons) Computer Science",
+      year: "2022 - 2026",
+      icon: <FaGraduationCap size={30} color="#00b09b" />,
+      logo: universityLogo,
+    },
   ];
 
   return (
-    <div className={darkMode ? "dark-mode" : "light-mode"}>
+    <div className="dark-mode">
       {/* ===== NAVBAR ===== */}
-      <Navbar
-        expand="lg"
-        fixed="top"
-        className={`shadow-sm ${darkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"}`}
-      >
+      <Navbar expand="lg" fixed="top" className="shadow-sm navbar-dark bg-dark">
         <Container>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
+            <Nav className="mx-auto nav-center">
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#about">About</Nav.Link>
+              <Nav.Link href="#education">Education</Nav.Link>
               <Nav.Link href="#skills">Skills</Nav.Link>
               <Nav.Link href="#projects">Projects</Nav.Link>
               <Nav.Link href="#contact">Contact</Nav.Link>
             </Nav>
-            <div
-              className="theme-toggle me-3"
-              onClick={toggleDarkMode}
-              style={{ cursor: "pointer" }}
-            >
-              {darkMode ? <FaSun size={22} /> : <FaMoon size={22} />}
-            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      {/* ===== HERO SECTION ===== */}
-      <section id="home" className="hero-section section-colored">
+      {/* ===== HERO ===== */}
+      <section id="home" className="hero-section hero-dark">
         <Container className="text-center hero-container">
           <motion.img
             src={profileImg}
@@ -129,11 +173,7 @@ const App = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
           />
-          <motion.h1
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
+          <motion.h1 initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
             Hi, I'm <span className="highlight">Isira Wickramaarachchi</span>
           </motion.h1>
           <p className="lead">Full Stack Developer | Data Science Enthusiast</p>
@@ -146,7 +186,7 @@ const App = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <FaLinkedin size={30} color="#ffffffff" />
+              <FaLinkedin size={30} />
             </a>
           </div>
         </Container>
@@ -159,16 +199,55 @@ const App = () => {
           <Row className="justify-content-center">
             <Col md={8}>
               <p className="text-center">
-                I’m a passionate developer who enjoys creating user-friendly web applications,
-                building scalable backend systems, and exploring data science and machine learning.
+                I’m a Full Stack Developer and Data Science enthusiast from Sri Lanka, pursuing a BSc in Computer Science. 
+                I enjoy building web applications and scalable backend systems, with experience in React, Node.js, and Python. 
+                I’m also passionate about exploring technology applications in the banking industry.
               </p>
             </Col>
           </Row>
         </Container>
       </section>
 
+      {/* ===== EDUCATION ===== */}
+      <section id="education" className="section section-colored text-center">
+        <Container>
+          <h2 className="mb-4">Education</h2>
+          <Row className="justify-content-center">
+            {education.map((edu, idx) => (
+              <Col md={6} key={idx} className="mb-4">
+                <Card
+                  className="education-card shadow-sm p-3"
+                  style={{
+                    backgroundColor: "#2a2a2a",
+                    color: "#eee",
+                    borderRadius: "12px",
+                  }}
+                >
+                  <div className="d-flex align-items-center gap-3">
+                    {edu.logo ? (
+                      <img
+                        src={edu.logo}
+                        alt={edu.school}
+                        style={{ width: "50px", height: "50px", objectFit: "contain" }}
+                      />
+                    ) : (
+                      edu.icon
+                    )}
+                    <div className="text-start">
+                      <h5>{edu.school}</h5>
+                      <p className="mb-0">{edu.degree}</p>
+                      <small>{edu.year}</small>
+                    </div>
+                  </div>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </section>
+
       {/* ===== SKILLS ===== */}
-      <section id="skills" className="section section-colored text-center">
+      <section id="skills" className="section section-alt text-center">
         <Container>
           <h2 className="mb-4">Skills</h2>
           {Object.keys(skills).map((category, idx) => (
@@ -180,8 +259,8 @@ const App = () => {
                     <Card
                       className="skill-card text-center p-3 shadow-sm"
                       style={{
-                        backgroundColor: darkMode ? "#2a2a2a" : "#fff",
-                        color: darkMode ? "#eee" : "#222",
+                        backgroundColor: "#2a2a2a",
+                        color: "#eee",
                         borderRadius: "12px",
                       }}
                     >
@@ -199,17 +278,31 @@ const App = () => {
       </section>
 
       {/* ===== PROJECTS ===== */}
-      <section id="projects" className="section section-alt">
+      <section id="projects" className="section section-colored">
         <Container>
           <h2 className="text-center mb-4">Projects</h2>
           <Row>
             {projects.map((proj, idx) => (
               <Col md={4} key={idx} className="mb-4">
-                <Card className="project-card shadow-sm">
+                <Card className="project-card shadow-sm h-100">
+                  <Card.Img
+                    variant="top"
+                    src={proj.image}
+                    alt={proj.title}
+                    style={{ height: "220px", objectFit: "cover" }}
+                  />
                   <Card.Body>
                     <Card.Title>{proj.title}</Card.Title>
                     <Card.Text>{proj.description}</Card.Text>
-                    <Button variant={darkMode ? "success" : "dark"} href={proj.link}>
+                    <div className="project-techs mb-3 d-flex flex-wrap gap-2">
+                      {proj.technologies.map((tech, i) => (
+                        <span key={i} className="tech-badge d-flex align-items-center gap-1">
+                          {React.cloneElement(tech.icon, { size: 20, color: "#00b09b" })}
+                          {tech.name}
+                        </span>
+                      ))}
+                    </div>
+                    <Button variant="success" href={proj.link}>
                       View Project
                     </Button>
                   </Card.Body>
@@ -220,29 +313,33 @@ const App = () => {
         </Container>
       </section>
 
-      {/* ===== CONTACT ===== */}
-      <section id="contact" className="section section-colored text-center">
+      <div style={{ height: "60px", background: "#1e1e1e" }}></div>
+
+      <section id="contact" className="section section-alt text-center">
         <Container>
           <h2>Contact Me</h2>
           <p className="lead">Let’s work together or just say hello 👋</p>
-
           <div className="contact-info mt-4 mb-4">
             <p className="d-flex align-items-center justify-content-center gap-2">
-              <FaEnvelope size={22} color={darkMode ? "#00b09b" : "#000"} />{" "}
+              <FaEnvelope size={22} color="#00b09b" />{" "}
               <a href="mailto:ipiyasara@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>
                 ipiyasara@gmail.com
               </a>
             </p>
             <p className="d-flex align-items-center justify-content-center gap-2">
-              <FaPhone size={22} color={darkMode ? "#00b09b" : "#000"} />{" "}
-              <span>+94 77 415 7296</span>
+              <FaPhone size={22} color="#00b09b" /> <span>+94 77 415 7296</span>
             </p>
           </div>
         </Container>
       </section>
 
-      {/* ===== FOOTER ===== */}
-      <footer className="footer text-center py-3 section-alt">
+      <footer
+        className="footer text-center py-4"
+        style={{
+          backgroundColor: "#222",
+          color: "#f8f9fa",
+        }}
+      >
         <p>© {new Date().getFullYear()} Isira Wickramaarachchi. All Rights Reserved.</p>
       </footer>
     </div>
